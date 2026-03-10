@@ -148,6 +148,22 @@ body {
     box-shadow: 0 0 30px var(--secondary-neon) !important;
 }
 
+iframe {
+    width: 100%;
+    border: none;
+    background: transparent; /* Macht den iFrame-Hintergrund durchsichtig */
+    display: block;
+}
+
+/* Spezielle Höhen für deine Menüs */
+iframe[src*="button-menu.html"] {
+    height: 120px; /* Erhöhe dies, bis alle Links oben sichtbar sind */
+}
+
+iframe[src*="de-footer.html"], 
+iframe[src*="en-footer.html"] {
+    height: 100px;
+}
 
 
 

@@ -1,43 +1,5 @@
 /* ACHTUNG HAFTUNGSAUSSCHLUSS! */
 
-/* Copyright 2025 | planeteriumprovider
-
-/* Licensed under the Apache License, Version 2.0 (the "License");
-/* You may use this file only in accordance with the License.
-/* You may obtain a copy of the License at
-/* 
-/* http://www.apache.org/licenses/LICENSE-2.0
-/* 
-/* Unless required by law or agreed to in writing,
-/* Products distributed under the License are distributed on an "AS IS" basis,
-/* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-/* The specific language for permissions and
-/* limitations under the License.
-/* 
-/*    |---------------------------------------------------------------------------------------------------------------------------------|
-/*    |                                                                                                                                 |
-/*    |             ACHTUNG! DIE OFFIZIELLEN RECHTE BESITZT XOIS UND DIE WEITERVERWENDUNG IST STRENGSTENS VERBOTEN!                     |
-/*    |                        ES MUSS ERST EINE OFFIZIELLE GENEHMIGUNG VON XOIS EINGWHOLT WERDEN!!!                                    |
-/*    |                                                                                                                                 |   
-/*    |---------------------------------------------------------------------------------------------------------------------------------|
-/*      |                                                                                                                             |
-/*        |                   @planeteriumprovider hat die Berechtigung von XOIS für die Verwendung erhalten!                       |
-/*      |                                                                                                                             |
-/*        |                                              EIGENTÜMER VOM CODE: XOIS                                                  |
-/*      |                                                                                                                             |
-/*    |---------------------------------------------------------------------------------------------------------------------------------|
-/*    | ---  WEITERE INFOS AUF + WEITERE INFOS AUF + WEITERE INFOS AUF + WEITERE INFOS AUF + WEITERE INFOS AUF + WEITERE INFOS AUF  --- |
-/*    |                                                                                                                                 |
-/*    | Instagram :  https://www.instagram.com/hakaidev?igsh=cmthM2cxYjJ5OWwy                                                           |
-/*    | Instagram :  https://www.instagram.com/meepcoin?igsh=MTRtYWZuaWV5eTFlZQ==                                                       |
-/*    | Instagram :  https://www.instagram.com/metha_connection?igsh=OWZsOTE5OWJibXN4                                                   |
-/*    | Whatsapp  :  https://whatsapp.com/channel/0029VaCABrQ0AgWFWiCXq13W                                                              |
-/*    | Whatsapp  :  https://whatsapp.com/channel/0029VaN2GYGCMY0Gr2mTFW2p                                                              |
-/*    | Youtube   :  https://youtube.com/@HakaiDEVxMETHA?si=jMuzOjq8cvVdm8ed                                                            |
-/*    | Discord   :  https://discord.gg/XW4gJQPf                                                                                        |
-/*    | Homepage  :  https://hakaidev-x-metha.org                                                                                       |
-/*    | Email     :  hakaidevxmethahelp@gmail.com                                                                                       |
-/*    |                                                                                                                                 |
 /*    |---------------------------------------------------------------------------------------------------------------------------------|
 /* 
 /* Copyright 2025  |  planeteriumprovider
@@ -54,18 +16,49 @@
 /* Die spezifischen Sprachbestimmungen für Berechtigungen und
 /* Einschränkungen im Rahmen der Lizenz. */
 
+
+
+
+
+
+
+
+/* Copyright 2025 | planeteriumprovider | Eigentümer: XOIS */
+
+
 document.addEventListener('DOMContentLoaded', () => {
+    const settingsButton = document.getElementById('settings-button');
+    const settingsScreen = document.getElementById('color-settings-screen');
     const backFromSettingsButton = document.getElementById('back-from-settings');
-    const restartFromSettingsButton = document.getElementById('restart-from-settings');   
+    const restartFromSettingsButton = document.getElementById('restart-from-settings');
+
+
+    // Menü öffnen
+    if (settingsButton && settingsScreen) {
+        settingsButton.addEventListener('click', () => {
+            settingsScreen.style.display = 'flex';
+        });
+    }
+
+
+    // Menü schließen
+    if (backFromSettingsButton && settingsScreen) {
+        backFromSettingsButton.addEventListener('click', () => {
+            settingsScreen.style.display = 'none';
+            if (typeof window.showStartMenu === 'function') {
+                window.showStartMenu();
+            }
+        });
+    }
+
+
+    // Funktion für Game-Over State
     window.updateColorMenuButtons = function() {
-        if (window.calledFromGameOver) {
+        if (window.calledFromGameOver && restartFromSettingsButton) {
             restartFromSettingsButton.style.display = 'inline-block';
-            backToGameButton.style.display = 'none';
+            // Falls backToGameButton im HTML existiert:
+            const backToGameBtn = document.getElementById('back-to-game');
+            if (backToGameBtn) backToGameBtn.style.display = 'none';
         }
-    } 
-    backFromSettingsButton.addEventListener('click', () => {
-        if (typeof window.showStartMenu === 'function') {
-            window.showStartMenu();
-        }
-    });
+    };
 });

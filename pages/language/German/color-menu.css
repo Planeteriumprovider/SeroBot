@@ -1,43 +1,5 @@
 /* ACHTUNG HAFTUNGSAUSSCHLUSS! */
 
-/* Copyright 2025 | planeteriumprovider
-
-/* Licensed under the Apache License, Version 2.0 (the "License");
-/* You may use this file only in accordance with the License.
-/* You may obtain a copy of the License at
-/* 
-/* http://www.apache.org/licenses/LICENSE-2.0
-/* 
-/* Unless required by law or agreed to in writing,
-/* Products distributed under the License are distributed on an "AS IS" basis,
-/* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-/* The specific language for permissions and
-/* limitations under the License.
-/* 
-/*    |---------------------------------------------------------------------------------------------------------------------------------|
-/*    |                                                                                                                                 |
-/*    |             ACHTUNG! DIE OFFIZIELLEN RECHTE BESITZT XOIS UND DIE WEITERVERWENDUNG IST STRENGSTENS VERBOTEN!                     |
-/*    |                        ES MUSS ERST EINE OFFIZIELLE GENEHMIGUNG VON XOIS EINGWHOLT WERDEN!!!                                    |
-/*    |                                                                                                                                 |   
-/*    |---------------------------------------------------------------------------------------------------------------------------------|
-/*      |                                                                                                                             |
-/*        |                   @planeteriumprovider hat die Berechtigung von XOIS für die Verwendung erhalten!                       |
-/*      |                                                                                                                             |
-/*        |                                              EIGENTÜMER VOM CODE: XOIS                                                  |
-/*      |                                                                                                                             |
-/*    |---------------------------------------------------------------------------------------------------------------------------------|
-/*    | ---  WEITERE INFOS AUF + WEITERE INFOS AUF + WEITERE INFOS AUF + WEITERE INFOS AUF + WEITERE INFOS AUF + WEITERE INFOS AUF  --- |
-/*    |                                                                                                                                 |
-/*    | Instagram :  https://www.instagram.com/hakaidev?igsh=cmthM2cxYjJ5OWwy                                                           |
-/*    | Instagram :  https://www.instagram.com/meepcoin?igsh=MTRtYWZuaWV5eTFlZQ==                                                       |
-/*    | Instagram :  https://www.instagram.com/metha_connection?igsh=OWZsOTE5OWJibXN4                                                   |
-/*    | Whatsapp  :  https://whatsapp.com/channel/0029VaCABrQ0AgWFWiCXq13W                                                              |
-/*    | Whatsapp  :  https://whatsapp.com/channel/0029VaN2GYGCMY0Gr2mTFW2p                                                              |
-/*    | Youtube   :  https://youtube.com/@HakaiDEVxMETHA?si=jMuzOjq8cvVdm8ed                                                            |
-/*    | Discord   :  https://discord.gg/XW4gJQPf                                                                                        |
-/*    | Homepage  :  https://hakaidev-x-metha.org                                                                                       |
-/*    | Email     :  hakaidevxmethahelp@gmail.com                                                                                       |
-/*    |                                                                                                                                 |
 /*    |---------------------------------------------------------------------------------------------------------------------------------|
 /* 
 /* Copyright 2025  |  planeteriumprovider
@@ -54,41 +16,67 @@
 /* Die spezifischen Sprachbestimmungen für Berechtigungen und
 /* Einschränkungen im Rahmen der Lizenz. */
 
-
-
-
 /* Copyright 2025 | planeteriumprovider | Eigentümer: XOIS */
 
-document.addEventListener('DOMContentLoaded', () => {
-    const settingsButton = document.getElementById('settings-button');
-    const settingsScreen = document.getElementById('color-settings-screen');
-    const backFromSettingsButton = document.getElementById('back-from-settings');
-    const restartFromSettingsButton = document.getElementById('restart-from-settings');
-
-    // Menü öffnen
-    if (settingsButton && settingsScreen) {
-        settingsButton.addEventListener('click', () => {
-            settingsScreen.style.display = 'flex';
-        });
-    }
-
-    // Menü schließen
-    if (backFromSettingsButton && settingsScreen) {
-        backFromSettingsButton.addEventListener('click', () => {
-            settingsScreen.style.display = 'none';
-            if (typeof window.showStartMenu === 'function') {
-                window.showStartMenu();
-            }
-        });
-    }
-
-    // Funktion für Game-Over State
-    window.updateColorMenuButtons = function() {
-        if (window.calledFromGameOver && restartFromSettingsButton) {
-            restartFromSettingsButton.style.display = 'inline-block';
-            // Falls backToGameButton im HTML existiert:
-            const backToGameBtn = document.getElementById('back-to-game');
-            if (backToGameBtn) backToGameBtn.style.display = 'none';
-        }
-    };
-});
+#color-settings-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+#color-settings-box {
+    background-color: var(--background);
+    padding: 30px 50px;
+    border-radius: 10px;
+    text-align: center;
+    color: var(--light-text);
+    border: 3px solid var(--primary-neon);
+    box-shadow: 0 0 30px var(--primary-neon);
+    max-width: 90vw;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+#color-settings-box h1 {
+    color: var(--primary-neon);
+    text-shadow: 0 0 20px var(--primary-neon), 0 0 30px var(--primary-neon);
+}
+#color-settings-box p {
+    color: var(--secondary-neon);
+    text-shadow: 0 0 5px var(--secondary-neon);
+}
+#theme-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+.theme-button {
+    padding: 15px 20px;
+    margin: 5px;
+    font-size: 16px; 
+    cursor: pointer;
+    border: 2px solid var(--primary-neon);
+    border-radius: 5px;
+    box-shadow: 0 0 15px var(--primary-neon);
+    transition: background-color 0.2s, box-shadow 0.2s, opacity 0.2s, filter 0.2s;
+    flex-grow: 1;
+    min-width: 180px;
+    max-width: 250px;
+}
+.theme-button:hover {
+    filter: brightness(1.2); 
+    box-shadow: 0 0 30px var(--primary-neon);
+}
+.theme-button.active {
+    opacity: 0.8; 
+    border: 4px solid var(--secondary-neon) !important;
+    box-shadow: 0 0 10px var(--secondary-neon) !important;
+    transform: none;
+}

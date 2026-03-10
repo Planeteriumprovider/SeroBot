@@ -16,30 +16,23 @@
 /* Die spezifischen Sprachbestimmungen für Berechtigungen und
 /* Einschränkungen im Rahmen der Lizenz. */
 
-
-
-
-
-
-
-
 /* Copyright 2025 | planeteriumprovider | Eigentümer: XOIS */
-
 
 document.addEventListener('DOMContentLoaded', () => {
     const settingsButton = document.getElementById('settings-button');
     const settingsScreen = document.getElementById('color-settings-screen');
     const backFromSettingsButton = document.getElementById('back-from-settings');
     const restartFromSettingsButton = document.getElementById('restart-from-settings');
-
+    const backToGameBtn = document.getElementById('back-to-game');
 
     // Menü öffnen
     if (settingsButton && settingsScreen) {
         settingsButton.addEventListener('click', () => {
             settingsScreen.style.display = 'flex';
+            // Prüfen, welcher Button angezeigt werden soll (GameOver State)
+            window.updateColorMenuButtons();
         });
     }
-
 
     // Menü schließen
     if (backFromSettingsButton && settingsScreen) {
@@ -51,14 +44,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-
-    // Funktion für Game-Over State
+    // Funktion zur Steuerung der Buttons (z.B. nach einem Game Over)
     window.updateColorMenuButtons = function() {
-        if (window.calledFromGameOver && restartFromSettingsButton) {
-            restartFromSettingsButton.style.display = 'inline-block';
-            // Falls backToGameButton im HTML existiert:
-            const backToGameBtn = document.getElementById('back-to-game');
+        if (window.calledFromGameOver) {
+            if (restartFromSettingsButton) restartFromSettingsButton.style.display = 'inline-block';
             if (backToGameBtn) backToGameBtn.style.display = 'none';
+        } else {
+            if (restartFromSettingsButton) restartFromSettingsButton.style.display = 'none';
+            // backToGameBtn nur zeigen, wenn er im HTML existiert
+            if (backToGameBtn) backToGameBtn.style.display = 'inline-block';
         }
     };
 });
